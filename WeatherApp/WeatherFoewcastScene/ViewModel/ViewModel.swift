@@ -45,7 +45,6 @@ private extension WeatherForecastViewModel {
 				windSpeed: String(format: "%.1f км/ч", forecastDay.day.maxwindKph),
 				humidity: String(format: "%d%%", Int(forecastDay.day.avghumidity)),
 				conditionText: forecastDay.day.condition.text,
-				//conditionIconURL: "https:\(forecastDay.day.condition.icon)"
 				conditionIconURL: buildIconURL(from: forecastDay.day.condition.icon)
 			)
 		}

@@ -37,41 +37,31 @@ final class WeatherForecastView: UIView {
 		return cityLabel
 	}()
 	
-//	let weatherIconImageView: UIImageView = {
-//		let imageView = UIImageView()
-//		imageView.contentMode = .scaleAspectFit
-//		return imageView
-//	}()
-//	
-//	let temperatureLabel: UILabel = {
-//		let tempertureLabel = UILabel()
-//		tempertureLabel.textColor = .white
-//		tempertureLabel.textAlignment = .center
-//		tempertureLabel.font = .systemFont(ofSize: Sizes.fontSizes.normal, weight: .bold)
-//		return tempertureLabel
-//	}()
-//	
-//	let weatherDescribtionLabel: UILabel = {
-//		let weatherDescribtionLabel = UILabel()
-//		weatherDescribtionLabel.textColor = .white
-//		weatherDescribtionLabel.numberOfLines = 1
-//		weatherDescribtionLabel.adjustsFontSizeToFitWidth = true
-//		weatherDescribtionLabel.minimumScaleFactor = 0.5
-//		weatherDescribtionLabel.textAlignment = .center
-//		weatherDescribtionLabel.font = .systemFont(ofSize: Sizes.fontSizes.normal, weight: .bold)
-//		return weatherDescribtionLabel
-//	}()
-//	let windSpeedAnНhumidityDescribtionLabel: UILabel = {
-//		let weatherDescribtionLabel = UILabel()
-//		weatherDescribtionLabel.textColor = .white
-//		weatherDescribtionLabel.numberOfLines = 1
-//		weatherDescribtionLabel.adjustsFontSizeToFitWidth = true
-//		weatherDescribtionLabel.minimumScaleFactor = 0.5
-//		weatherDescribtionLabel.textAlignment = .center
-//		weatherDescribtionLabel.font = .systemFont(ofSize: Sizes.fontSizes.normal, weight: .bold)
-//		return weatherDescribtionLabel
-//	}()
+	let weatherIconImageView: UIImageView = {
+		let imageView = UIImageView()
+		imageView.contentMode = .scaleAspectFit
+		return imageView
+	}()
 	
+	let temperatureLabel: UILabel = {
+		let tempertureLabel = UILabel()
+		tempertureLabel.textColor = .white
+		tempertureLabel.textAlignment = .center
+		tempertureLabel.font = .systemFont(ofSize: Sizes.fontSizes.normal, weight: .bold)
+		return tempertureLabel
+	}()
+	
+	let weatherDescribtionLabel: UILabel = {
+		let weatherDescribtionLabel = UILabel()
+		weatherDescribtionLabel.textColor = .white
+		weatherDescribtionLabel.numberOfLines = 1
+		weatherDescribtionLabel.adjustsFontSizeToFitWidth = true
+		weatherDescribtionLabel.minimumScaleFactor = 0.5
+		weatherDescribtionLabel.textAlignment = .center
+		weatherDescribtionLabel.font = .systemFont(ofSize: Sizes.fontSizes.normal, weight: .bold)
+		return weatherDescribtionLabel
+	}()
+
 	let activityIndicator: UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView()
 		indicator.color = .white
@@ -80,19 +70,15 @@ final class WeatherForecastView: UIView {
 	} ()
 
 	
-	let dailyCollectionView: UICollectionView = {
+	let dailyCollectionView: SelfSizingCollectionView = {
 		let layout = UICollectionViewFlowLayout()
-		layout.scrollDirection = .horizontal
+		layout.scrollDirection = .vertical
 		layout.minimumLineSpacing = Sizes.Paddings.lineSpacing
 		layout.itemSize = CGSize(
 			width: UIScreen.main.bounds.width - Sizes.itemSizes.daylyConllectionItem.0,
 			height: Sizes.itemSizes.daylyConllectionItem.1
 		)
-		
-//		layout.estimatedItemSize = CGSize(
-//					width: UIScreen.main.bounds.width - Sizes.itemSizes.daylyConllectionItem.0,
-//					height: Sizes.itemSizes.daylyConllectionItem.1
-//				)
+
 		layout.sectionInset = UIEdgeInsets(
 			top: Sizes.Paddings.sidePadding,
 			left: 0,
@@ -100,8 +86,8 @@ final class WeatherForecastView: UIView {
 			right: 0
 		)
 		
-		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		//collectionView.isScrollEnabled = false
+		let collectionView = SelfSizingCollectionView(frame: .zero, collectionViewLayout: layout)
+		collectionView.isScrollEnabled = false
 		collectionView.backgroundColor = #colorLiteral(red: 0.08548969775, green: 0.3861692548, blue: 0.7213394046, alpha: 1).withAlphaComponent(Sizes.alpha)
 		
 		collectionView.showsHorizontalScrollIndicator = false
@@ -129,19 +115,17 @@ private extension WeatherForecastView {
 
 		[
 			cityNameLabel,
-			//temperatureLabel,
-			//weatherIconImageView,
-			//weatherDescribtionLabel,
-			//windSpeedAnНhumidityDescribtionLabel,
+			temperatureLabel,
+			weatherIconImageView,
+			weatherDescribtionLabel,
 			dailyCollectionView,
 			activityIndicator
 		].forEach { contentStackView.addArrangedSubview($0) }
 
 		[
 			cityNameLabel,
-			//temperatureLabel,
-			//weatherDescribtionLabel,
-			//windSpeedAnНhumidityDescribtionLabel,
+			temperatureLabel,
+			weatherDescribtionLabel,
 			activityIndicator
 		].forEach {
 			$0.setContentHuggingPriority(.required, for: .vertical)
@@ -178,7 +162,6 @@ private extension WeatherForecastView {
 					constant: -Sizes.Paddings.horizontalInset
 				),
 				contentStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-				//weatherIconImageView.heightAnchor.constraint(equalToConstant: 60),
 
 				activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
 				activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -186,6 +169,7 @@ private extension WeatherForecastView {
 		)
 	}
 }
+
 
 
 

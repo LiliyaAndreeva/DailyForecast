@@ -68,6 +68,11 @@ private extension WeatherViewController {
 
 	func update(with model: ForecastDisplayModel) {
 		weatherView.cityNameLabel.text = model.cityName
+		weatherView.temperatureLabel.text = model.dailyForecasts.first?.temperature
+		weatherView.weatherDescribtionLabel.text = model.dailyForecasts.first?.conditionText
+		if let url = model.dailyForecasts.first?.conditionIconURL {
+			weatherView.weatherIconImageView.kf.setImage(with: url)
+		}
 		weatherView.dailyCollectionView.isHidden = false
 		weatherView.activityIndicator.stopAnimating()
 	}

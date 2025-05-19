@@ -12,6 +12,6 @@ enum APIEndpoint {
 
 	var url: URL {
 		let key = "680bedb005bd443cb46154008251605"
-		return URL(string: "https://api.weatherapi.com/v1/forecast.json?key=\(key)&q=tyumen&days=5&lang=ru")!
+		return URL(string: "https://api.weatherapi.com/v1/forecast.json?key=\(key)&q=moscow&days=5&lang=ru")!
 	}
 }
